@@ -13,10 +13,10 @@ SELECT
     nameOrig AS Customer_ID,
     
     -- --- B E H A V I O R A L   A N A L Y S I S ---
-    -- How active is this customer?S
+    -- How active is this customer?
     COUNT(step) AS Frequency_Count,
     
-    -- How much total money are they moving?
+    -- How much total money is being moved?
     SUM(amount) AS Total_Exposure,
 
     -- --- T H E   R I S K   S C O R I N G   E N G I N E ---
@@ -58,3 +58,4 @@ SELECT TOP 10
     Total_Risk_Score 
 FROM v_Customer_Risk_Scores 
 ORDER BY Total_Risk_Score DESC;
+
