@@ -29,16 +29,16 @@ SELECT
         ELSE 5 
     END) 
     +
-    -- Flag 2: High Frequency (Smurfing or Bot behavior)
+    -- Flag 2: High Frequency
     (CASE 
         WHEN COUNT(step) > 50 THEN 30      -- Too many small transactions
         WHEN COUNT(step) BETWEEN 20 AND 50 THEN 15
         ELSE 0 
     END) 
     +
-    -- Flag 3: Sudden Large Spike (Unusual single transaction)
+    -- Flag 3: Sudden Large Spike
     (CASE 
-        WHEN MAX(amount) > 500000 THEN 30   -- Single transaction >5 Lakhs
+        WHEN MAX(amount) > 500000 THEN 30
         ELSE 0 
     END) 
     AS Total_Risk_Score
@@ -50,7 +50,7 @@ GO -- Batch separation for SSMS
 -- ==============================================================================
 -- ACTION ITEM: Investigation Pipeline
 -- ==============================================================================
--- Let's grab the top 10 most suspicious accounts for the manual review team.
+-- Displaying  the top 10 most suspicious accounts for review.
 SELECT TOP 10 
     Customer_ID, 
     Frequency_Count, 
